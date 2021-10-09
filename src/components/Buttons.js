@@ -47,7 +47,7 @@ function Buttons({ clearDisplay, appendNumber, choseOperation, compute }) {
 				</button>
 				<button
 					onClick={(e) => choseOperation(e)}
-					id='substract'
+					id='subtract'
 					className='focus:outline-none p2 border border-black bg-yellow-500 active:bg-yellow-600 rounded-none'
 				>
 					-
@@ -103,7 +103,7 @@ function Buttons({ clearDisplay, appendNumber, choseOperation, compute }) {
 				</button>
 				<button
 					onClick={(e) => compute(e)}
-					id='equal'
+					id='equals'
 					className='focus:outline-none p2 border border-black row-span-2 bg-yellow-500 active:bg-yellow-600 rounded-none'
 				>
 					=

@@ -22,7 +22,7 @@ function App() {
 
 	const clearDisplay = (e) => {
 		e.preventDefault();
-		setDisplay("");
+		setDisplay(0);
 		setCurrentValue("");
 		setPrevValue("");
 		setOperation(undefined);
@@ -31,11 +31,21 @@ function App() {
 	const appendNumber = (e) => {
 		e.preventDefault();
 		if (e.target.innerText === "." && currentValue.includes(".")) return;
+		if (e.target.innerText === "0" && currentValue === "0") return;
 
 		setCurrentValue((currentValue) => currentValue + e.target.innerText);
+		const display = currentValue + e.target.innerText;
+		setDisplay(display);
 	};
 
 	const choseOperation = (e) => {
+		if (operation !== "" && e.target.innerText === "-") {
+			setCurrentValue("-");
+		}
+		if (currentValue === "-" && e.target.innerText !== "-") {
+			setCurrentValue("");
+			setOperation(e.target.innerText);
+		}
 		if (currentValue === "") return;
 		if (prevValue !== "") {
 			setOperation(e.target.innerText);
@@ -72,12 +82,14 @@ function App() {
 		}
 		if (e.target.innerText === "=") {
 			setCurrentValue(computation);
+			setDisplay(computation);
 			setOperation(undefined);
 			setPrevValue("");
 			console.log(computation);
 		} else {
 			setCurrentValue("");
 			setPrevValue(computation);
+			setDisplay(computation);
 		}
 	};
 
